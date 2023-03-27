@@ -22,7 +22,7 @@ fs.readFile("project.html", (err, project) => {
 http
   .createServer((request, response) => {
     let url = request.url;
-    response.writeHeader(200, { "Content-Type": "text/html" });
+    response.writeHeader(200, { "Content-Type" : "text/html" });
     switch (url) {
       case "/project":
         response.write(projectContent);
