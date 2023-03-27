@@ -1,37 +1,49 @@
-const http = require("http");
-const fs = require("fs");
+const http = require("http")
+const fs = require("fs")
+const args = require('minimist')(process.argv.slice(1), {
+  alias: {
+    p: 'port'
+  },
+  default: {
+    port: 3000
+  }
+})
 
 
-let homeContent = "";
-let projectContent = "";
+let homeContent = ""
+let projectContent = ""
 
 fs.readFile("home.html", (err, home) => {
   if (err) {
-    throw err;
+    throw err
   }
-  homeContent = home;
+  homeContent = home
 });
 
 fs.readFile("project.html", (err, project) => {
   if (err) {
-    throw err;
+    throw err
   }
-  projectContent = project;
+  projectContent = project
 });
 
 http
   .createServer((request, response) => {
-    let url = request.url;
-    response.writeHeader(200, { "Content-Type" : "text/html" });
+    let url = request.url
+    response.writeHeader(200, { "Content-Type" : "text/html" })
     switch (url) {
       case "/project":
-        response.write(projectContent);
-        response.end();
-        break;
+        response.write(projectContent)
+        response.end()
+        break
+       case '/registration':
+        response.write(registerPage)
+        response.end()
+        break
       default:
-        response.write(homeContent);
-        response.end();
-        break;
+        response.write(homeContent)
+        response.end()
+        break
     }
   })
-  .listen(3000);
+  .listen(args.port)
