@@ -1,5 +1,5 @@
-const http = require("http")
-const fs = require("fs")
+const http = require('http')
+const fs = require('fs')
 const args = require('minimist')(process.argv.slice(1), {
   alias: {
     p: 'port'
@@ -9,35 +9,40 @@ const args = require('minimist')(process.argv.slice(1), {
   }
 })
 
+let homeContent = ''
+let projectContent = ''
+let register = ''
 
-let homeContent = ""
-let projectContent = ""
-
-fs.readFile("home.html", (err, home) => {
+fs.readFile('home.html', (err, home) => {
   if (err) {
     throw err
   }
   homeContent = home
-});
+})
 
-fs.readFile("project.html", (err, project) => {
+fs.readFile('project.html', (err, project) => {
   if (err) {
     throw err
   }
   projectContent = project
-});
+})
+
+fs.readFile('registration.html', (err, data) => {
+  if (err) throw err
+  register = data
+})
 
 http
   .createServer((request, response) => {
-    let url = request.url
-    response.writeHeader(200, { "Content-Type" : "text/html" })
+    const url = request.url
+    response.writeHeader(200, { 'Content-Type': 'text/html' })
     switch (url) {
-      case "/project":
+      case '/project':
         response.write(projectContent)
         response.end()
         break
-       case '/registration':
-        response.write(registerPage)
+      case '/registration':
+        response.write(register)
         response.end()
         break
       default:
