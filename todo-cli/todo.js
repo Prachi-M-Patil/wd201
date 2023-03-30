@@ -66,13 +66,14 @@ const todoList = () => {
           }
         }
         if(itm.dueDate === tomorrow) {
-          outputarr.push("[ ]" + " ", itm.title + " " + itm.dueDate);
+                outputarr.push("[ ]" + " " + itm.title + " " + itm.dueDate);
           }
+
 
         })
         outputarr.reverse();
         let val = outputarr.join("\n");
-        return val;      
+        return val;
       // Format the To-Do list here, and return the output string
       // as per the format given above.
     }
