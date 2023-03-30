@@ -10,7 +10,7 @@ const todoList = () => {
     const overdue = () => {
       let overdueCheck = []
       all.forEach((itm) => {
-        if (itm.dueDate == yesterday && itm.completed == false){
+        if (itm.dueDate === yesterday && itm.completed === false){
           overdueCheck.push(itm);
         }
       })
@@ -22,7 +22,7 @@ const todoList = () => {
     const dueToday = () => {
       let dueTodayCheck = []
       all.forEach((itm) => {
-        if (itm.dueDate == today){
+        if (itm.dueDate === today) {
           dueTodayCheck.push(itm);
         }
       })
@@ -34,7 +34,7 @@ const todoList = () => {
     const dueLater = () => {
       let dueLaterCheck = []
       all.forEach((itm) => {
-        if (itm.dueDate == tomorrow){
+        if (itm.dueDate === tomorrow) {
           dueLaterCheck.push(itm);
         }
       })
@@ -46,24 +46,26 @@ const todoList = () => {
     const toDisplayableList = (list) => {
       let outputarr = [];
       list.forEach((itm,index) => {
-        if(itm.dueDate == yesterday){
-          if(itm.completed == true){
+        if(itm.dueDate === yesterday)
+        {
+          if(itm.completed === true)
+          {
             outputarr.push("[x]" + " " + itm.title + " " + itm.dueDate);
-          }
-          else{
-            outputarr.push("[]" + " " + itm.title + " " + itm.dueDate);
+          } else {
+            outputarr.push("[ ]" + " " + itm.title + " " + itm.dueDate);
           }
         }
-        if (itm.dueDate == today) {
+        if (itm.dueDate === today) {
           delete itm.dueDate;
-          if (itm.completed == true){
-            outputarr.push("[x]" + " " + dueLater.title);
+          if (itm.completed === true)
+          {
+            outputarr.push("[x]" + " " + itm.title);
           }
           else{
-            outputarr.push("[]" + " " + itm.title);
+            outputarr.push("[ ]" + " " + itm.title);
           }
         }
-        if(itm.dueDate == tomorrow) {
+        if(itm.dueDate === tomorrow) {
           outputarr.push("[ ]" + " ", itm.title + " " + itm.dueDate);
           }
 
