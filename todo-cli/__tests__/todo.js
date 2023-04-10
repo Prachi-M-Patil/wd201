@@ -30,7 +30,7 @@ describe("todolist test suite", () => {
 
     test("checks retrieval of overdue items", () => {
         add({ title: "test new todo.js", dueDate: yesterday, completed: false });
-        expect(overdue().length).toBe(0);
+        expect(overdue().length).toBe(1);
     });
 
     test("checks retrieval of due today items", () => {
@@ -39,7 +39,7 @@ describe("todolist test suite", () => {
 
     test("checks retrieval of due later items", () => {
         add({ title: " test new todo.js", dueDate: tomorrow, completed: false});
-        expect(dueLater().length).toBe(0);
+        expect(dueLater().length).toBe(1);
     });
 
 });
