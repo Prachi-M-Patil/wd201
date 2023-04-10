@@ -7,7 +7,7 @@
     "test": "jest",
     "prepare": "cd .. && husky install todo-cli/.husky"
   },
-   "lint-staged": {
+  "lint-staged": {
     "*.js": [
       "eslint",
       "prettier --write ."
@@ -27,5 +27,4 @@
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.7"
   }
-  
 }
