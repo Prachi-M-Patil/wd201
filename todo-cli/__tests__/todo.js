@@ -3,17 +3,12 @@ const todoList = require("../todo");
 const {all, markAsComplete, add, overdue, dueToday, dueLater } = todoList();
 
 describe("todolist test suite", () => {
-    const formattedDate = (d) => { 
-         return d.toISOString().split("T")[0]; 
-        }; 
-        const dateToday = new Date(); 
-        const today = formattedDate(dateToday); 
-        const yesterday = formattedDate( 
-          new Date(new Date().setDate(dateToday.getDate() - 1)) 
-        ); 
-        const tomorrow = formattedDate( 
-          new Date(new Date().setDate(dateToday.getDate() + 1)) 
-        );
+    var dateToday = new Date();
+    const today = dateToday.toLocaleDateString("en-CA");
+    let yesterday = new Date(new Date().setDate(dateToday.getDate() - 1));
+    yesterday = yesterday.toLocaleDateString("en-CA");
+    let tomorrow = new Date(new Date().setDate(dateToday.getDate() + 1));
+    tomorrow = tomorrow.toLocaleDateString("en-CA");
     
 
     test("creating new todo", () => {
@@ -23,6 +18,7 @@ describe("todolist test suite", () => {
     });
 
     test("mark todo as complete", () => {
+        expect(all[0].completed).toBe(false);
         markAsComplete(0);
         expect(all[0].completed).toBe(true);
 
