@@ -54,7 +54,10 @@ module.exports = (sequelize, DataTypes) => {
       // FILL IN HERE TO RETURN ITEMS DUE tODAY
       return await Todo.findAll({
         where: {
-          dueDate: { [Op.eq]: new Date().toLocaleDateString("en-CA") },
+        dueDate: { [Op.eq]: new Date(new Date().setDate(new Date().getDate() + 1))
+            .toISOString()
+            .slice(0, 10) }
+         
         },
       });
     }
