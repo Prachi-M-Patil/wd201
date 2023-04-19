@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
         where: {
         dueDate: { [Op.eq]: new Date(new Date().setDate(new Date().getDate() + 1))
             .toISOString()
-            .slice(0, 10) }
+            .slice(0, 10) },
          
         },
       });
