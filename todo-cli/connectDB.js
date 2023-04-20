@@ -1,8 +1,10 @@
+// connectDB.js
+
 const Sequelize = require("sequelize");
 
 const database = "todo_db";
 const username = "postgres";
-const password = "12345";
+const password = "prathibha";
 const sequelize = new Sequelize(database, username, password, {
   host: "localhost",
   dialect: "postgres",
