@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 // addTodo.js
-const argv = require("minimist")(process.argv.slice(2));
+var argv = require("minimist")(process.argv.slice(2));
 const db = require("./models/index");
 
 const createTodo = async (params) => {
@@ -14,9 +15,9 @@ const getJSDate = (days) => {
   if (!Number.isInteger(days)) {
     throw new Error("Need to pass an integer as days");
   }
-  return new Date(new Date().setDate(new Date().getDate() + days))
-    .toISOString()
-    .slice(0, 10);
+  const today = new Date();
+  const oneDay = 60 * 60 * 24 * 1000;
+  return new Date(today.getTime() + days * oneDay);
 };
 (async () => {
   const { title, dueInDays } = argv;
