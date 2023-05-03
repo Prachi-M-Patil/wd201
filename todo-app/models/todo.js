@@ -1,5 +1,5 @@
 "use strict";
-const { Model, Op } = require("sequelize");
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     /**
@@ -9,118 +9,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Todo.belongsTo(models.User, {
-      //   foreignKey: "userId",
-      // });
     }
 
-    static addTodo({ title, dueDate, userId }) {
+    static addTodo({ title, dueDate }) {
       return this.create({
-        title: title,
-        dueDate: dueDate,
+        title,
+        dueDate,
         completed: false,
-        userId,
       });
     }
 
-    static getTodos(userId) {
-      return this.findAll({
-        order: [["id", "ASC"]],
-        where: {
-          userId,
-        },
-      });
+    markAsCompleted() {
+      return this.update({ completed: true });
     }
 
-    static overdue(userId) {
-      return this.findAll({
-        where: {
-          userId,
-          completed: false,
-          dueDate: {
-            [Op.lt]: new Date(),
-          },
-        },
-      });
-    }
-
-    static dueToday(userId) {
-      return this.findAll({
-        where: {
-          userId,
-          completed: false,
-          dueDate: {
-            [Op.eq]: new Date(),
-          },
-        },
-      });
-    }
-
-    static dueLater(userId) {
-      return this.findAll({
-        where: {
-          userId,
-          completed: false,
-          dueDate: {
-            [Op.gt]: new Date(),
-          },
-        },
-      });
-    }
-
-    static completed(userId) {
-      return this.findAll({
-        where: {
-          userId,
-          completed: true,
-        },
-      });
-    }
-
-    removeTodo(userId) {
-      if (this.userId === userId) {
-        return this.destroy();
-      } else {
-        throw new Error("Unauthorized");
-      }
-    }
-
-    setCompletionStatus(completed, userId) {
-      if (this.userId === userId) {
-        return this.update({
-          completed,
-        });
-      } else {
-        throw new Error("Unauthorized");
-      }
+    static getTodos() {
+      return this.findAll();
     }
   }
   Todo.init(
     {
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "Title is required",
-          },
-          notEmpty: {
-            msg: "Title is required",
-          },
-        },
-      },
-      dueDate: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "Due date is required",
-          },
-          notEmpty: {
-            msg: "Due date is required",
-          },
-        },
-      },
+      title: DataTypes.STRING,
+      dueDate: DataTypes.DATEONLY,
       completed: DataTypes.BOOLEAN,
     },
     {
