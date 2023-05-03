@@ -1,17 +1,15 @@
 {
   "development": {
     "username": "postgres",
-    "password": "hemanth22122",
-    "logging": false,
-    "database": "todo_db_dev",
+    "password": "Prachi",
+    "database": "wd-todo-dev",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
-    "password": "hemanth22122",
-    "logging": false,
-    "database": "todo_db_test",
+    "password": "12345",
+    "database": "wd-todo-test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
