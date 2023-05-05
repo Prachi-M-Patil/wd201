@@ -5,16 +5,24 @@ const bodyParser = require("body-parser");
 const path = require("path");
 app.use(bodyParser.json());
 
+
+
 app.set("view engine", "ejs");
 
-// eslint-disable-next-line no-undef
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", async (request, response) => {
   const allTodos = await Todo.getTodos();
+  const overdue = await Todo.getOverdueTodos();
+  const dueToday = await Todo.getDueTodayTodods();
+  const dueLater = await Todo.getDueLaterTodos();
   if (request.accepts("html")) {
     response.render("index", {
       allTodos,
+      overdue,
+      dueToday,
+      dueLater,
     });
   } else {
     response.json({
