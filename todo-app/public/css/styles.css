@@ -5,6 +5,4 @@ body {
   .Todo-Item:hover .trash-icon{
     display:block;
   }
-  .Todo-Item:hover .trash-icon {
-    display: block;
-  }
+  
