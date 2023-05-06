@@ -5,9 +5,11 @@ const bodyParser = require("body-parser");
 const path = require("path");
 app.use(bodyParser.json());
 
+// Set EJS as view engine
 
 app.set("view engine", "ejs");
 
+// eslint-disable-next-line no-undef
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", async (request, response) => {
@@ -65,6 +67,7 @@ app.put("/todos/:id/markAsCompleted", async (request, response) => {
     return response.status(422).json(error);
   }
 });
+
 app.delete("/todos/:id", async (request, response) => {
   console.log("Delete a todo by ID: ", request.params.id);
   const updatedTodo = await Todo.destroy({
@@ -74,4 +77,5 @@ app.delete("/todos/:id", async (request, response) => {
   });
   return response.send(updatedTodo ? true : false);
 });
+
 module.exports = app;
