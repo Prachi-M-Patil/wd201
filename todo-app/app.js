@@ -6,9 +6,7 @@ const path = require("path");
 app.use(bodyParser.json());
 
 
-
 app.set("view engine", "ejs");
-
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -44,7 +42,6 @@ app.get("/todos", async (request, response) => {
 
 app.post("/todos", async (request, response) => {
   console.log("Creating a todo", request.body);
-  // Todo
   try {
     const todo = await Todo.addTodo({
       title: request.body.title,
@@ -68,8 +65,6 @@ app.put("/todos/:id/markAsCompleted", async (request, response) => {
     return response.status(422).json(error);
   }
 });
-
-// eslint-disable-next-line no-unused-vars
 app.delete("/todos/:id", async (request, response) => {
   console.log("Delete a todo by ID: ", request.params.id);
   const updatedTodo = await Todo.destroy({
@@ -79,5 +74,4 @@ app.delete("/todos/:id", async (request, response) => {
   });
   return response.send(updatedTodo ? true : false);
 });
-
 module.exports = app;
