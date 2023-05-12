@@ -35,7 +35,7 @@ app.get("/", async (request, response) => {
 app.get("/todos", async (request, response) => {
   console.log("Todo list");
   try {
-    const todoList = await Todo.getTodos();
+     await Todo.getTodos();
     return response.json(todoList);
   } catch (error) {
     console.log(error);
