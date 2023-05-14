@@ -1,10 +1,14 @@
 const express = require("express");
+var csrf = require("csurf");
 const app = express();
 const { Todo } = require("./models");
 const bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
 const path = require("path");
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false}));
+app.use(cookieParser("shh! some secret string"));
+app.use(csrf({ cookie: true }))
 
 // Set EJS as view engine
 
