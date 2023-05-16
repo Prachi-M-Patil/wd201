@@ -45,11 +45,9 @@
     }
 
     function validateForm() {
-      // Get the input values
       var title = document.getElementById('title').value;
       var date = document.getElementById('dueDate').value;
       
-      // Check if any field is empty
       if (title === '' || date === '') {
         alert('Please fill in all the fields.');
         return false;
