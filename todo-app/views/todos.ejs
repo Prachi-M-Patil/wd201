@@ -1,5 +1,8 @@
 <div>
-  <h5 class="inline-block"><%= content %></h5><div id="count-<%= id %>" class="mb-1 inline-block bg-gray-200 px-4 rounded ml-2"><%= data.length %></div>
+  <h5 class="inline-block">
+    <%= content %>
+  </h5>
+  <div id="count-<%= id %>" class="mb-1 inline-block bg-gray-200 px-4 rounded ml-2"><%= data.length %></div>
   <ul class="list-none">
     <% for( var i = 0; i< data.length; i++ ) { %>
       <li class="Todo-Item">
