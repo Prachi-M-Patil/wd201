@@ -18,8 +18,7 @@ if (config.use_env_variable) {
     config.username,
     config.password,
     config
-  );
-}
+  ); }
 
 fs.readdirSync(__dirname)
   .filter((file) => {
@@ -43,8 +42,6 @@ Object.keys(db).forEach((modelName) => {
     db[modelName].associate(db);
   }
 });
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
 module.exports = db;
