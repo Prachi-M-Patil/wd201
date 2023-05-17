@@ -10,11 +10,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser("shh! some secreat string"));
 app.use(csrf("this_should_be_32_character_long", ["POST", "PUT", "DELETE"]));
 
-// Set EJS as view engine
-
 app.set("view engine", "ejs");
 
-// eslint-disable-next-line no-undef
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", async (request, response) => {
@@ -40,7 +37,6 @@ app.get("/", async (request, response) => {
   }
 });
 
-// eslint-disable-next-line no-unused-vars
 app.get("/todos", async (request, response) => {
   console.log("Todo list");
   try {
@@ -54,7 +50,7 @@ app.get("/todos", async (request, response) => {
 
 app.post("/todos", async (request, response) => {
   console.log("Creating a todo", request.body);
-  // Todo
+ 
   try {
     await Todo.addTodo({
       title: request.body.title,
@@ -70,10 +66,9 @@ app.post("/todos", async (request, response) => {
 app.put("/todos/:id", async (request, response) => {
   console.log("We have to update a todo with ID:", request.params.id);
   const todo = await Todo.findByPk(request.params.id);
-  //console.log(todo.dataValues.completed)
-  // console.log(request.body)
+ 
   try {
-    // const updatedTodo = await todo.markAsCompleted();
+  
     const updatedTodo = await todo.setCompletionStatus(request.body.completed);
     return response.json(updatedTodo);
   } catch (error) {
@@ -82,7 +77,6 @@ app.put("/todos/:id", async (request, response) => {
   }
 });
 
-// eslint-disable-next-line no-unused-vars
 app.delete("/todos/:id", async (request, response) => {
   console.log("Delete a todo by ID: ", request.params.id);
   try {
@@ -93,7 +87,4 @@ app.delete("/todos/:id", async (request, response) => {
   }
 });
 
-// app.listen(3000, () => {
-//   console.log("started express server at port 3000");
-// });
 module.exports = app;
