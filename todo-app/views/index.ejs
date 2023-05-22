@@ -66,17 +66,10 @@
 <!-- Header section -->
 
       <%- include('header.ejs') %>
-
-<!-- Add Todo -->
-
-      <%- include('addTodo.ejs') %>
-
-<!-- List Todos  and delete-->
-
-      <%- include('todos.ejs', {content: 'Overdue', data: overdue, id:'overdue'}) %>
-      <%- include('todos.ejs', {content: 'Due Today', data: dueToday, id:'due-today'}) %>
-      <%- include('todos.ejs', {content: 'Due Later', data: dueLater, id:'due-later'}) %>
-      <%- include('todos.ejs', {content: 'Completed Items', data: completedItems, id:'completed-items'}) %>
+      
+      <p class="py-2">Welcome to the To-Do manager</p>
+      <p class="py-2">New here? <a class="text-green-600" href="/signup">Sign-up now</a></p>
+      <p class="py-2">Already have an account? <a class="text-green-600" href="/login">Sign-in</a></p>
 
     </div>
   </div>
