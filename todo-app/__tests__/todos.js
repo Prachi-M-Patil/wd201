@@ -40,7 +40,7 @@ describe("Todo test cases ", () => {
       firstName: "Test",
       lastName: "User A",
       email: "user.a@test.com",
-      password: "12345678",
+      password: "123456789",
       _csrf: csrfToken,
     });
     expect(res.statusCode).toBe(302);
