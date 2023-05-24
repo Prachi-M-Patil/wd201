@@ -104,7 +104,7 @@ describe("Todo test cases ", () => {
 
   test("Mark a todo as incomplete", async () => {
     const agent = request.agent(server);
-    await login(agent, "user.a@test.com", "12345678");
+    await login(agent, "user.a@test.com", "123456789");
     let res = await agent.get("/todos");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/todos").send({
@@ -140,7 +140,7 @@ describe("Todo test cases ", () => {
 
   test("Should delete the todo with ID", async () => {
     const agent = request.agent(server);
-    await login(agent, "user.a@test.com", "12345678");
+    await login(agent, "user.a@test.com", "123456789");
     let res = await agent.get("/todos");
     let csrfToken = extractCsrfToken(res);
 
