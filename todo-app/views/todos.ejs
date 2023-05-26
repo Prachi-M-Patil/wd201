@@ -27,7 +27,6 @@
       })
       .catch((err) => console.error(err))
     }
-
     function deleteTodo(id){
       fetch(`/todos/${id}`, {
         method: 'delete',
@@ -66,14 +65,11 @@
 <!-- Header section -->
 
       <%- include('header.ejs') %>
+      <p><%= loggedInUserFirstName %></p>
       <a href="/signout">Signout</a>
 
 <!-- Add Todo -->
-      <% if(messages && messages.error && messages.error.length > 0)  { %>
-        <% for(var i=0; i<messages.error.length; i++) { %>
-                <li> <%= messages.error[i] %></li>
-        <% } %>
-      <% } %>
+      <%- include('notifications.ejs') %>
       <%- include('addTodo.ejs') %>
 
 <!-- List Todos  and delete-->
