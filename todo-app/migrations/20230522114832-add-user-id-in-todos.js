@@ -13,8 +13,8 @@ module.exports = {
       references: {
         table: "Users",
         field: "id",
-      }
-    })
+      },
+    });
     /**
      * Add altering commands here.
      *
@@ -31,5 +31,5 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-  }
+  },
 };
