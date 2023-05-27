@@ -4,9 +4,10 @@ const passport = require("passport");
 const connectEnsureLogin = require("connect-ensure-login");
 const session = require("express-session");
 const flash = require("connect-flash");
+var cookieParser = require("cookie-parser");
 const LocalStrategy = require("passport-local");
 const app = express();
-var cookieParser = require("cookie-parser");
+
 const { Todo, User } = require("./models");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -77,7 +78,6 @@ passport.use(
     }
   )
 );
-
 passport.serializeUser((user, done) => {
   console.log("Serializing user in session", user.id);
   done(null, user.id);
@@ -168,7 +168,6 @@ app.post(
     response.redirect("/todos");
   }
 );
-
 app.get("/signout", (request, response, next) => {
   // Signout
   request.logout((err) => {
@@ -208,7 +207,6 @@ app.get(
     }
   }
 );
-
 app.post(
   "/todos",
   connectEnsureLogin.ensureLoggedIn(),
@@ -237,7 +235,6 @@ app.post(
     }
   }
 );
-
 app.put(
   "/todos/:id",
   connectEnsureLogin.ensureLoggedIn(),
@@ -258,7 +255,6 @@ app.put(
     }
   }
 );
-
 // eslint-disable-next-line no-unused-vars
 app.delete(
   "/todos/:id",
@@ -273,7 +269,6 @@ app.delete(
     }
   }
 );
-
 // app.listen(3000, () => {
 //   console.log("started express server at port 3000");
 // });
