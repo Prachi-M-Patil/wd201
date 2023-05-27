@@ -12,8 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Todo.belongsTo(models.User, {
         foreignKey: "userId",
       });
-      // define association here
-    }
+      }
 
     static addTodo({ title, dueDate, userId }) {
       return this.create({
@@ -23,15 +22,19 @@ module.exports = (sequelize, DataTypes) => {
         userId,
       });
     }
+
     // markAsCompleted() {
     //   return this.update({ completed: true });
     // }
+
     setCompletionStatus(status, userId) {
       return this.update({ where: { userId }, completed: !status });
     }
+
     // static async getTodos() {
     //   return await this.findAll();
     // }
+
     static async getOverdueTodos(userId) {
       return await Todo.findAll({
         where: {
