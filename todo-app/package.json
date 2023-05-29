@@ -16,7 +16,7 @@
       "prettier --write ."
     ]
   },
-  "author": "Avdhut Pailwan <avdhutpailwan@gmail.com>",
+  "author": "Prachi Patil"
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
